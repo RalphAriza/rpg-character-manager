@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import characterRoutes from "./src/routes/characterRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import statsRoutes from "./src/routes/statsRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/api/characters", characterRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/stats", statsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
