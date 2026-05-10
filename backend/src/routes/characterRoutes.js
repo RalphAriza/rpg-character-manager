@@ -3,6 +3,7 @@ import {
     getCharacters,
     createCharacter,
     updateCharacter,
+    deleteCharacter,
 } from "../controllers/characterController.js";
 
 const router = express.Router();
@@ -12,6 +13,9 @@ router
   .get(getCharacters)
   .post(createCharacter);
 
-router.put("/:id", updateCharacter);
+router
+  .route("/:id")
+  .put(updateCharacter)
+  .delete(deleteCharacter);
 
 export default router;

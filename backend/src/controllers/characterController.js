@@ -50,3 +50,20 @@ export const updateCharacter = async (req, res) => {
     });
   }
 };
+
+export const deleteCharacter = async (req, res) => {
+  try {
+    const deletedCharacter = await Character.findByIdAndDelete(req.params.id);
+
+    if (!deletedCharacter) {
+      return res.status(404).json({ message: "Character not found" });
+    }
+
+    res.status(200).json({ message: "Character deleted successfully" });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to delete character",
+      error: error.message,
+    });
+  }
+};
