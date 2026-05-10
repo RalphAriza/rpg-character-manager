@@ -4,7 +4,16 @@ import Item from "../models/Item.js";
 
 export const getCharacters = async (req, res) => {
   try {
-    const characters = await Character.find().populate("userId", "username gender");
+    const filter = {};
+
+    if (req.query.classType) {
+      filter.classType = req.query.classType;
+    }
+
+    const characters = await Character.find(filter).populate(
+      "userId",
+      "username gender"
+    );
 
     res.status(200).json(characters);
   } catch (error) {
