@@ -13,3 +13,16 @@ export const getCharacters = async (req, res) => {
     });
   }
 };
+
+export const createCharacter = async (req, res) => {
+  try {
+    const newCharacter = await Character.create(req.body);
+
+    res.status(201).json(newCharacter);
+  } catch (error) {
+    res.status(400).json({
+      message: "Failed to create character",
+      error: error.message,
+    });
+  }
+};
