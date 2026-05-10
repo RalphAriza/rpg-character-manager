@@ -26,3 +26,27 @@ export const createCharacter = async (req, res) => {
     });
   }
 };
+
+export const updateCharacter = async (req, res) => {
+  try {
+    const updatedCharacter = await Character.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        returnDocument: "after",
+        runValidators: true,
+      }
+    );
+
+    if (!updatedCharacter) {
+      return res.status(404).json({ message: "Character not found" });
+    }
+
+    res.status(200).json(updatedCharacter);
+  } catch (error) {
+    res.status(400).json({
+      message: "Failed to update character",
+      error: error.message,
+    });
+  }
+};
