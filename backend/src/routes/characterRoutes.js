@@ -4,6 +4,7 @@ import {
     createCharacter,
     updateCharacter,
     deleteCharacter,
+    getCharacterItems,
 } from "../controllers/characterController.js";
 
 const router = express.Router();
@@ -17,5 +18,7 @@ router
   .route("/:id")
   .put(updateCharacter)
   .delete(deleteCharacter);
+
+router.get("/:id/items", getCharacterItems);
 
 export default router;

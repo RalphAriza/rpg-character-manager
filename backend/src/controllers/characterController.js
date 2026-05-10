@@ -1,5 +1,6 @@
 import Character from "../models/Character.js";
 import User from "../models/User.js";
+import Item from "../models/Item.js";
 
 export const getCharacters = async (req, res) => {
   try {
@@ -63,6 +64,19 @@ export const deleteCharacter = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Failed to delete character",
+      error: error.message,
+    });
+  }
+};
+
+export const getCharacterItems = async (req, res) => {
+  try {
+    const items = await Item.find({ characterId: req.params.id });
+
+    res.status(200).json(items);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch character items",
       error: error.message,
     });
   }
