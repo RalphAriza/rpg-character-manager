@@ -1,6 +1,6 @@
 import CharacterRow from "./CharacterRow";
 
-function CharacterList({ characters, onDelete }) {
+function CharacterList({ characters, onDelete, onUpdate }) {
   return (
     <ul>
       {characters.map((character) => (
@@ -8,6 +8,7 @@ function CharacterList({ characters, onDelete }) {
           key={character._id}
           character={character}
           onDelete={onDelete}
+          onUpdate={onUpdate}
         />
       ))}
     </ul>

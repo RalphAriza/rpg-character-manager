@@ -30,6 +30,23 @@ function App() {
     }
   };
 
+  const updateCharacter = async (id, updatedData) => {
+    const response = await fetch(`http://localhost:5000/api/characters/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      alert("Failed to update character");
+      return;
+    }
+
+    fetchCharacters();
+  };
+
   const deleteCharacter = async (id) => {
     const confirmDelete = window.confirm("Delete this character?");
 
@@ -86,7 +103,11 @@ function App() {
         onClassFilterChange={setClassFilter}
       />
 
-      <CharacterList characters={filteredCharacters} onDelete={deleteCharacter} />
+      <CharacterList
+        characters={filteredCharacters}
+        onDelete={deleteCharacter}
+        onUpdate={updateCharacter}
+      />
     </main>
   );
 }
