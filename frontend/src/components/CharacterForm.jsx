@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CharacterForm({ onCharacterCreated }) {
+function CharacterForm({ onCharacterCreated, users }) {
   const [formData, setFormData] = useState({
     name: "",
     classType: "Warrior",
@@ -39,6 +39,11 @@ function CharacterForm({ onCharacterCreated }) {
 
     if (formData.health < 0) {
       alert("Health cannot be negative");
+      return;
+    }
+
+    if (!formData.userId) {
+      alert("Please select a user");
       return;
     }
     
@@ -91,12 +96,15 @@ function CharacterForm({ onCharacterCreated }) {
       <input name="intelligence" type="number" value={formData.intelligence} onChange={handleChange} />
       <input name="agility" type="number" value={formData.agility} onChange={handleChange} />
 
-      <input
-        name="userId"
-        placeholder="User ID"
-        value={formData.userId}
-        onChange={handleChange}
-      />
+      <select name="userId" value={formData.userId} onChange={handleChange}>
+        <option value="">Select user</option>
+
+        {users.map((user) => (
+          <option key={user._id} value={user._id}>
+            {user.username}
+          </option>
+        ))}
+      </select>
 
       <button type="submit">Create</button>
     </form>

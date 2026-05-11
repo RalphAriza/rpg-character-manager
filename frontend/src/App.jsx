@@ -10,7 +10,14 @@ function App() {
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [classFilter, setClassFilter] = useState("");
+  const [users, setUsers] = useState([]);
 
+  const fetchUsers = async () => {
+    const response = await fetch("http://localhost:5000/api/users");
+    const data = await response.json();
+    setUsers(data);
+  };
+  
   const fetchCharacters = async () => {
     try {
       setLoading(true);
@@ -65,6 +72,7 @@ function App() {
   };
 
   useEffect(() => {
+    fetchUsers();
     fetchCharacters();
 
     const intervalId = setInterval(() => {
@@ -94,7 +102,7 @@ function App() {
     <main>
       <h1>RPG Character Manager</h1>
 
-      <CharacterForm onCharacterCreated={fetchCharacters} />
+      <CharacterForm onCharacterCreated={fetchCharacters} users={users}/>
 
       <SearchFilter
         searchTerm={searchTerm}
