@@ -79,36 +79,111 @@ function CharacterForm({ onCharacterCreated, users }) {
     <form onSubmit={handleSubmit}>
       <h2>Create Character</h2>
 
-      <input name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+      <label>
+        Name
+        <input
+          name="name"
+          placeholder="Character name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+      </label>
 
-      <select name="classType" value={formData.classType} onChange={handleChange}>
-        <option>Warrior</option>
-        <option>Mage</option>
-        <option>Archer</option>
-        <option>Assassin</option>
-        <option>Priest</option>
-      </select>
+      <label>
+        Class
+        <select
+          name="classType"
+          value={formData.classType}
+          onChange={handleChange}
+        >
+          <option>Warrior</option>
+          <option>Mage</option>
+          <option>Archer</option>
+          <option>Assassin</option>
+          <option>Priest</option>
+        </select>
+      </label>
 
-      <input name="level" type="number" value={formData.level} onChange={handleChange} />
-      <input name="health" type="number" value={formData.health} onChange={handleChange} />
-      <input name="mana" type="number" value={formData.mana} onChange={handleChange} />
-      <input name="strength" type="number" value={formData.strength} onChange={handleChange} />
-      <input name="intelligence" type="number" value={formData.intelligence} onChange={handleChange} />
-      <input name="agility" type="number" value={formData.agility} onChange={handleChange} />
+      <label>
+        Level
+        <input
+          name="level"
+          type="number"
+          value={formData.level}
+          onChange={handleChange}
+        />
+      </label>
 
-      <select name="userId" value={formData.userId} onChange={handleChange}>
-        <option value="">Select user</option>
+      <label>
+        Health
+        <input
+          name="health"
+          type="number"
+          value={formData.health}
+          onChange={handleChange}
+        />
+      </label>
 
-        {users.map((user) => (
-          <option key={user._id} value={user._id}>
-            {user.username}
-          </option>
-        ))}
-      </select>
+      <label>
+        Mana
+        <input
+          name="mana"
+          type="number"
+          value={formData.mana}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        Strength
+        <input
+          name="strength"
+          type="number"
+          value={formData.strength}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        Intelligence
+        <input
+          name="intelligence"
+          type="number"
+          value={formData.intelligence}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        Agility
+        <input
+          name="agility"
+          type="number"
+          value={formData.agility}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        User
+        <select
+          name="userId"
+          value={formData.userId}
+          onChange={handleChange}
+        >
+          <option value="">Select user</option>
+
+          {users.map((user) => (
+            <option key={user._id} value={user._id}>
+              {user.username}
+            </option>
+          ))}
+        </select>
+      </label>
 
       <button type="submit">Create</button>
     </form>
-  );
+      );
 }
 
 export default CharacterForm;

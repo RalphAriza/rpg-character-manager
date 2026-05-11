@@ -1,6 +1,6 @@
 function SearchFilter({ searchTerm, onSearchChange, classFilter, onClassFilterChange }) {
   return (
-    <div>
+    <div classname="search-filter">
       <input
         type="text"
         placeholder="Search by character name..."

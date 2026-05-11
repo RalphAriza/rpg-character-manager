@@ -39,11 +39,14 @@ function CharacterRow({ character, onDelete, onUpdate }) {
 
   return (
     <li>
-      {character.name} — {character.classType} — Level {character.level} — HP{" "}
-      {character.health}
+      <span>{character.name}</span>
+      <span>{character.classType}</span>
+      <span>Level {character.level} | HP {character.health}</span>
 
-      <button onClick={() => setIsEditing(true)}>Edit</button>
-      <button onClick={() => onDelete(character._id)}>Delete</button>
+      <div className="character-actions">
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button onClick={() => onDelete(character._id)}>Delete</button>
+      </div>
     </li>
   );
 }

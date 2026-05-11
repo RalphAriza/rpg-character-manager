@@ -103,3 +103,6 @@ Stores RPG character stats and class information.
 Stores equipment assigned to characters.
 
 ---
+
+## Assets
+Background image sourced from Pixabay.

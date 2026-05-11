@@ -3,6 +3,7 @@ import "./App.css";
 import CharacterList from "./components/CharacterList";
 import CharacterForm from "./components/CharacterForm";
 import SearchFilter from "./components/SearchFilter";
+import backgroundImage from "./assets/rpg-background.jpg";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -99,7 +100,17 @@ function App() {
   });
 
   return (
-    <main>
+    <main
+      style={{
+        backgroundImage: `linear-gradient(
+          rgba(0,0,0,0.72),
+          rgba(0,0,0,0.82)
+        ), url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <h1>RPG Character Manager</h1>
 
       <CharacterForm onCharacterCreated={fetchCharacters} users={users}/>
