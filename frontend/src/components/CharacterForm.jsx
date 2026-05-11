@@ -26,6 +26,22 @@ function CharacterForm({ onCharacterCreated }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Validation
+    if (!formData.name.trim()) {
+      alert("Character name is required");
+      return;
+    }
+
+    if (formData.level < 1 || formData.level > 100) {
+      alert("Level must be between 1 and 100");
+      return;
+    }
+
+    if (formData.health < 0) {
+      alert("Health cannot be negative");
+      return;
+    }
+    
     const response = await fetch("http://localhost:5000/api/characters", {
       method: "POST",
       headers: {
