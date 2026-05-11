@@ -49,6 +49,14 @@ function App() {
 
   useEffect(() => {
     fetchCharacters();
+
+    const intervalId = setInterval(() => {
+      fetchCharacters();
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   if (loading) return <p>Loading characters...</p>;
