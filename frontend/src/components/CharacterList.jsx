@@ -1,14 +1,14 @@
+import CharacterRow from "./CharacterRow";
+
 function CharacterList({ characters, onDelete }) {
   return (
     <ul>
       {characters.map((character) => (
-        <li key={character._id}>
-          {character.name} — {character.classType} — Level {character.level}
-
-          <button onClick={() => onDelete(character._id)}>
-            Delete
-          </button>
-        </li>
+        <CharacterRow
+          key={character._id}
+          character={character}
+          onDelete={onDelete}
+        />
       ))}
     </ul>
   );
