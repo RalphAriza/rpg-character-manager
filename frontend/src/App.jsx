@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import CharacterList from "./components/CharacterList";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -36,13 +37,7 @@ function App() {
     <main>
       <h1>RPG Character Manager</h1>
 
-      <ul>
-        {characters.map((character) => (
-          <li key={character._id}>
-            {character.name} — {character.classType} — Level {character.level}
-          </li>
-        ))}
-      </ul>
+      <CharacterList characters={characters} />
     </main>
   );
 }
