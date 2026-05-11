@@ -16,7 +16,10 @@ function CharacterForm({ onCharacterCreated }) {
   const handleChange = (event) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [event.target.name]:
+        event.target.type === "number"
+          ? Number(event.target.value)
+          : event.target.value
     });
   };
 
