@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CharacterList from "./components/CharacterList";
 import CharacterForm from "./components/CharacterForm";
+import SearchFilter from "./components/SearchFilter";
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchCharacters = async () => {
     try {
@@ -51,13 +53,19 @@ function App() {
   if (loading) return <p>Loading characters...</p>;
   if (error) return <p>{error}</p>;
 
+  const filteredCharacters = characters.filter((character) =>
+    character.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <main>
       <h1>RPG Character Manager</h1>
 
       <CharacterForm onCharacterCreated={fetchCharacters} />
 
-      <CharacterList characters={characters} onDelete={deleteCharacter} />
+      <SearchFilter searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+
+      <CharacterList characters={filteredCharacters} onDelete={deleteCharacter} />
     </main>
   );
 }
