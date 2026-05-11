@@ -9,6 +9,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [classFilter, setClassFilter] = useState("");
 
   const fetchCharacters = async () => {
     try {
@@ -53,9 +54,16 @@ function App() {
   if (loading) return <p>Loading characters...</p>;
   if (error) return <p>{error}</p>;
 
-  const filteredCharacters = characters.filter((character) =>
-    character.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCharacters = characters.filter((character) => {
+    const matchesName = character.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    const matchesClass =
+      classFilter === "" || character.classType === classFilter;
+
+    return matchesName && matchesClass;
+  });
 
   return (
     <main>
@@ -63,7 +71,12 @@ function App() {
 
       <CharacterForm onCharacterCreated={fetchCharacters} />
 
-      <SearchFilter searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+      <SearchFilter
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        classFilter={classFilter}
+        onClassFilterChange={setClassFilter}
+      />
 
       <CharacterList characters={filteredCharacters} onDelete={deleteCharacter} />
     </main>
