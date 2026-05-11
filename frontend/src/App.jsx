@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import CharacterList from "./components/CharacterList";
+import CharacterForm from "./components/CharacterForm";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -36,6 +37,8 @@ function App() {
   return (
     <main>
       <h1>RPG Character Manager</h1>
+
+      <CharacterForm onCharacterCreated={fetchCharacters} />
 
       <CharacterList characters={characters} />
     </main>
