@@ -27,6 +27,23 @@ function App() {
     }
   };
 
+  const deleteCharacter = async (id) => {
+    const confirmDelete = window.confirm("Delete this character?");
+
+    if (!confirmDelete) return;
+
+    const response = await fetch(`http://localhost:5000/api/characters/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      alert("Failed to delete character");
+      return;
+    }
+
+    fetchCharacters();
+  };
+
   useEffect(() => {
     fetchCharacters();
   }, []);
@@ -40,7 +57,7 @@ function App() {
 
       <CharacterForm onCharacterCreated={fetchCharacters} />
 
-      <CharacterList characters={characters} />
+      <CharacterList characters={characters} onDelete={deleteCharacter} />
     </main>
   );
 }
