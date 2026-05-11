@@ -69,7 +69,7 @@ function App() {
 
     const intervalId = setInterval(() => {
       fetchCharacters();
-    }, 10000);
+    }, 180000);
 
     return () => {
       clearInterval(intervalId);
